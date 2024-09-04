@@ -1,0 +1,177 @@
+{{#partial "head"}}
+
+{{{ checkout.checkout_head }}}
+{{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+{{ getFontsCollection }}
+
+<script type="text/javascript">
+    window.language = {{{langJson 'optimized_checkout'}}};
+</script>
+<script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+
+{{{head.scripts}}}
+
+{{/partial}}
+
+{{#partial "page"}}
+<header class="checkoutHeader optimizedCheckout-header">
+    <div class="checkoutHeader-content">
+        <h1 class="is-srOnly">{{lang 'checkout.title'}}</h1>
+        <h2 class="checkoutHeader-heading">
+            <a class="checkoutHeader-link" href="{{urls.home}}">
+                {{#if checkout.header_image}}
+                    <img alt="{{settings.store_logo.title}}" class="checkoutHeader-logo" id="logoImage" src="{{ checkout.header_image }}"/>
+                {{ else }}
+                    <span class="header-logo-text">{{settings.store_logo.title}}</span>
+                {{/if}}
+            </a>
+        </h2>
+    </div>
+</header>
+
+{{{ checkout.checkout_content }}}
+
+{{{ footer.scripts }}}
+
+
+
+<script>
+    jQuery(document).ready(function() {
+        setTimeout(function() {
+            jQuery('meta[name="viewport"]').remove();
+            jQuery("head").append("<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=3'>");
+            jQuery(".optimizedCheckout-orderSummary .optimizedCheckout-orderSummary-cartSection .productList .productList-item").each(function(){
+                jQuery(this).find(".product img").attr("alt", "");
+            });
+            
+            jQuery(".checkout-view-content .checkout-form fieldset").each(function() {
+                var fieldName = jQuery(this).find(".form-body .form-field input").attr("name");
+                if(fieldName == "orderComment") {
+                    jQuery(this).find(".form-body .form-field input").attr("id", fieldName);
+                }
+            });
+            
+             //==== First Name Start ==== //
+            
+            jQuery(".dynamic-form-field--firstName .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--firstName .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--firstName .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== First Name End ==== //
+            //==== Last Name Start ==== //
+            
+            jQuery(".dynamic-form-field--lastName .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--lastName .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--lastName .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== Last Name End ==== //
+            //==== Company Name Start ==== //
+            
+            jQuery(".dynamic-form-field--company .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--company .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--company .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--company .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--company .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--company .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--company .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--company .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== Company Name End ==== //
+            //==== Phone Number Start ==== //
+            
+            jQuery(".dynamic-form-field--phone .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--phone .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--phone .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--phone .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--phone .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--phone .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--phone .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--phone .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== Phone Number End ==== //
+            //==== AddressLine1 Start ==== //
+            
+            jQuery(".dynamic-form-field--addressLine1 .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--addressLine1 .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--addressLine1 .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== AddressLine1 End ==== //
+            //==== AddressLine2 Start ==== //
+            
+            jQuery(".dynamic-form-field--addressLine2 .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--addressLine2 .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--addressLine2 .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== AddressLine2 End ==== //
+            //==== City Start ==== //
+            
+            jQuery(".dynamic-form-field--city .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--city .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--city .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--city .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--city .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--city .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--city .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--city .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== City End ==== //
+            //==== CountryCode Start ==== //
+            
+            jQuery(".dynamic-form-field--countryCode .form-field select").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--countryCode .form-field select").attr("aria-labelledby",  jQuery(".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--countryCode .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== CountryCode End ==== //
+            //==== State Start ==== //
+            
+            jQuery(".dynamic-form-field--provinceCode .form-field select").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--provinceCode .form-field select").attr("aria-labelledby",  jQuery(".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--provinceCode .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== State End ==== //
+            //==== Postcode Start ==== //
+            
+            jQuery(".dynamic-form-field--postCode .form-field input").attr("aria-labelledby", "");
+            jQuery(".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label").html();
+            jQuery(".dynamic-form-field--postCode .form-field input").attr("aria-labelledby",  jQuery(".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label").attr("id"));
+
+            jQuery( '<div class="is-srOnly" id="' + jQuery(".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label").attr("id") +'"> ' + jQuery(".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label").html() + ' </div>' ).insertAfter( ".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label" );
+            jQuery(".dynamic-form-field--postCode .form-field .optimizedCheckout-form-label").attr("id", "");
+
+            //==== Postcode End ==== //  
+            
+          jQuery(".checkout-form fieldset:first-child").prepend('<legend class="is-srOnly form-legend optimizedCheckout-headingSecondary">Checkout Shipping Address</legend>');
+          
+          jQuery(".checkout-address .form-field .optimizedCheckout-form-input").css({
+              'background-color': '#F7FFF1'
+          });
+          
+          jQuery(".checkout-address .form-field .optimizedCheckout-form-select").css({
+              'background-color': '#F7FFF1'
+          });
+          
+          jQuery(".optimizedCheckout-orderSummary-cartSection .redeemable-label").css({
+              'text-decoration': 'underline'
+          });
+
+            
+        }, 5000); 
+       
+    });
+</script>
+
+{{/partial}}
+
+{{> layout/empty}}
