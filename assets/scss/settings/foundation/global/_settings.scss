@@ -20,7 +20,8 @@ $figure-marginBottom:               spacing("single") + spacing("third");
 $figure-figcaption-marginBottom:    -(spacing("third"));
 $figcaption-marginTop:              spacing("half");
 $figcaption-fontSize:               null;
-$figcaption-color:                  color("greys", "light");
+// $figcaption-color:                  color("greys", "light");
+$figcaption-color:                  "#757575";
 
 
 // Settings
