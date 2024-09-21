@@ -1,4 +1,3 @@
-<script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 {{inject 'passwordRequirements' settings.password_requirements}}
 {{inject 'recaptchaTitle' (lang 'create_account.recaptcha_title')}}
 {{#partial "page"}}
@@ -30,17 +29,5 @@
             {{/if}}
         </div>
     </div>
-<script>
-    var AnanyooJS = {
-        removeHrefFromSubmenuHeading: function() {
-            jQuery(".navPages-list .navPages-item").each(function() {
-                jQuery(this).find(".has-subMenu").attr("href", "");
-            });
-        },
-    }
-    jQuery(document).ready(function() {
-        AnanyooJS.removeHrefFromSubmenuHeading();
-    });
-</script>
 {{/partial}}
 {{> layout/base}}

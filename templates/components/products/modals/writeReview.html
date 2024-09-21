@@ -17,12 +17,11 @@
                     default_image=theme_settings.default_image_product
                 }}
             </div>
-            <h3 class="product-brand">{{ product.brand.name }}</h3>
-            <h4 class="product-title">{{ product.title }}</h4>
+            <h6 class="product-brand">{{ product.brand.name }}</h6>
+            <h5 class="product-title">{{ product.title }}</h5>
         </div>
         <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
-                <legend class="is-srOnly">Rating & Review</legend>
                 <div class="form-field">
                     <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating_label'}}
                         <small>{{lang 'common.required' }}</small>

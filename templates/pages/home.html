@@ -40,31 +40,6 @@ blog:
         {{> components/products/new products=products.new columns=theme_settings.homepage_new_products_column_count}}
     {{/if}}
     {{{region name="home_below_new_products"}}}
-    
-    
-    <div class="blog-home">
-        <div><h2 class="page-heading">Recent Posts</h2></div>
-        <div class="wrapper">
-        <div class="grid">
-            {{#each blog.recent_posts}}
-            <article class="col-one-third">
-            <header>
-                <a href="{{url}}" aria-label="{{title}}"><img src="{{getImage thumbnail}}" class="blog-image" alt="{{title}}"></a> 
-                <h3 class="blog-title"><strong>{{title}}</strong></h3>
-            </header>
-            <div>
-                <p class="blog-post">{{summary}}..</p>
-            </div>
-            <footer>
-                <div class="entry-meta blog-date">Posted on <time datetime="{{moment}}">{{date_published}}</time> by {{author}}</div>
-            </footer>
-            </article>
-            {{/each}}
-        </div>
-        </div>
-    </div>
-    
-
 </div>
 {{/partial}}
 {{> layout/base}}

@@ -8,7 +8,7 @@
         {{#block "head"}} {{/block}}
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script>
             {{!-- Change document class from no-js to js so we can detect this in css --}}
@@ -82,6 +82,5 @@
         <script async defer src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}" onload="onThemeBundleMain()"></script>
 
         {{{footer.scripts}}}
-        
     </body>
 </html>
