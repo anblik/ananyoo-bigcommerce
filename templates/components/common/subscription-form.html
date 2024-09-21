@@ -3,13 +3,12 @@
 
 <form class="form" action="{{urls.subscribe.action}}" method="post">
     <fieldset class="form-fieldset">
-        <legend class="sr-only" style="display:none;">Subscribe to our newsletter</legend>
         <input type="hidden" name="action" value="subscribe">
         <input type="hidden" name="nl_first_name" value="bc">
         <input type="hidden" name="check" value="1">
         <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
             <div class="form-prefixPostfix wrap">
-                <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
                 <input class="form-input"
                        id="nl_email"
                        name="nl_email"
@@ -18,16 +17,13 @@
                        placeholder="{{lang 'newsletter.email_placeholder'}}"
                        aria-describedby="alertBox-message-text"
                        aria-required="true"
-                       aria-label="{{lang 'newsletter.email_placeholder'}}"
+                       autocomplete="email"
                        required
                 >
                 <input class="button button--primary form-prefixPostfix-button--postfix"
                        type="submit"
                        value="{{lang 'newsletter.subscribe_submit'}}"
                 >
-                <p id="alertBox-message-text"  style="display:none;">
-                  subscribe Now
-                </p>
             </div>
             {{#if settings.show_newsletter_summary }}
                 <div class="footer-newsletter-summary">{{settings.newsletter_summary}}</div>

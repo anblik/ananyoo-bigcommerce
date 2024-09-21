@@ -3,16 +3,12 @@
         {{#unless theme_settings.hide_breadcrumbs }}
             {{#each breadcrumbs}}
                 <li class="breadcrumb {{#if @last}}is-active{{/if}}">
-                     {{#if @last}} 
+                    <a class="breadcrumb-label"
+                       href="{{url}}"
+                       {{#if @last}}aria-current="page"{{/if}}
+                    >
                         <span>{{name}}</span>
-                     {{else }}
-                        <a class="breadcrumb-label"
-                           href="{{url}}"
-                           {{#if @last}}aria-current="page"{{/if}}
-                        >
-                            <span>{{name}}</span>
-                        </a>
-                    {{/if}}
+                    </a>
                 </li>
             {{/each}}
         {{/unless}}

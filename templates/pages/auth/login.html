@@ -1,4 +1,3 @@
-<script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
 {{#partial "page"}}
 <div class="login">
     {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
@@ -48,17 +47,5 @@
         {{/if}}
     </div>
 </div>
-<script>
-var AnanyooJS = {
-    removeHrefFromSubmenuHeading: function() {
-        jQuery(".navPages-list .navPages-item").each(function() {
-            jQuery(this).find(".has-subMenu").attr("href", "");
-        });
-    },
-}
-    jQuery(document).ready(function() {
-        AnanyooJS.removeHrefFromSubmenuHeading();
-    });
-</script>
 {{/partial}}
 {{> layout/base}}

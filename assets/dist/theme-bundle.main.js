@@ -1881,6 +1881,13 @@ var ProductDetails = /*#__PURE__*/function (_ProductDetailsBase) {
           $context: $context
         });
       }
+      document.dispatchEvent(new CustomEvent('onProductOptionsChanged', {
+        bubbles: true,
+        detail: {
+          content: productAttributesData,
+          data: productAttributesContent
+        }
+      }));
     });
   }
 
@@ -1913,8 +1920,8 @@ var ProductDetails = /*#__PURE__*/function (_ProductDetailsBase) {
       /*
           Should match zoom size used for data-zoom-image in
           components/products/product-view.html
-            Note that this will only be used as a fallback image for browsers that do not support srcset
-            Also note that getSrcset returns a simple src string when exactly one size is provided
+           Note that this will only be used as a fallback image for browsers that do not support srcset
+           Also note that getSrcset returns a simple src string when exactly one size is provided
       */);
       var mainImageUrl = _bigcommerce_stencil_utils__WEBPACK_IMPORTED_MODULE_2__["default"].tools.imageSrcset.getSrcset(image.data, {
         '1x': this.context.productSize
@@ -1922,8 +1929,8 @@ var ProductDetails = /*#__PURE__*/function (_ProductDetailsBase) {
       /*
           Should match fallback image size used for the main product image in
           components/products/product-view.html
-            Note that this will only be used as a fallback image for browsers that do not support srcset
-            Also note that getSrcset returns a simple src string when exactly one size is provided
+           Note that this will only be used as a fallback image for browsers that do not support srcset
+           Also note that getSrcset returns a simple src string when exactly one size is provided
       */);
       var mainImageSrcset = _bigcommerce_stencil_utils__WEBPACK_IMPORTED_MODULE_2__["default"].tools.imageSrcset.getSrcset(image.data);
       this.imageGallery.setAlternateImage({
@@ -2767,13 +2774,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _global_foundation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./global/foundation */ "./assets/js/theme/global/foundation.js");
 /* harmony import */ var _global_quick_view__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./global/quick-view */ "./assets/js/theme/global/quick-view.js");
 /* harmony import */ var _global_cart_preview__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./global/cart-preview */ "./assets/js/theme/global/cart-preview.js");
-/* harmony import */ var _global_cookieNotification__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./global/cookieNotification */ "./assets/js/theme/global/cookieNotification.js");
-/* harmony import */ var _common_carousel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./common/carousel */ "./assets/js/theme/common/carousel/index.js");
-/* harmony import */ var _global_svg_injector__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./global/svg-injector */ "./assets/js/theme/global/svg-injector.js");
+/* harmony import */ var _common_carousel__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./common/carousel */ "./assets/js/theme/common/carousel/index.js");
+/* harmony import */ var _global_svg_injector__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./global/svg-injector */ "./assets/js/theme/global/svg-injector.js");
 /* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.min.js");
 function _inheritsLoose(t, o) { t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o); }
 function _setPrototypeOf(t, e) { return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) { return t.__proto__ = e, t; }, _setPrototypeOf(t, e); }
-
 
 
 
@@ -2802,11 +2807,10 @@ var Global = /*#__PURE__*/function (_PageManager) {
     (0,_global_currency_selector__WEBPACK_IMPORTED_MODULE_5__["default"])(cartId);
     (0,_global_foundation__WEBPACK_IMPORTED_MODULE_8__["default"])($(document));
     (0,_global_quick_view__WEBPACK_IMPORTED_MODULE_9__["default"])(this.context);
-    (0,_common_carousel__WEBPACK_IMPORTED_MODULE_12__["default"])(this.context);
+    (0,_common_carousel__WEBPACK_IMPORTED_MODULE_11__["default"])(this.context);
     (0,_global_menu__WEBPACK_IMPORTED_MODULE_7__["default"])();
     (0,_global_mobile_menu_toggle__WEBPACK_IMPORTED_MODULE_6__["default"])();
-    (0,_global_cookieNotification__WEBPACK_IMPORTED_MODULE_11__["default"])();
-    (0,_global_svg_injector__WEBPACK_IMPORTED_MODULE_13__["default"])();
+    (0,_global_svg_injector__WEBPACK_IMPORTED_MODULE_12__["default"])();
   };
   return Global;
 }(_page_manager__WEBPACK_IMPORTED_MODULE_3__["default"]);
@@ -2918,51 +2922,6 @@ var CartPreviewEvents = {
   } else {
     $body.trigger('cart-quantity-update', quantity);
   }
-}
-
-/***/ }),
-
-/***/ "./assets/js/theme/global/cookieNotification.js":
-/*!******************************************************!*\
-  !*** ./assets/js/theme/global/cookieNotification.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _bigcommerce_stencil_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @bigcommerce/stencil-utils */ "./node_modules/@bigcommerce/stencil-utils/src/main.js");
-/* provided dependency */ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.min.js");
-
-
-/**
- * European websites must notify users of cookies to comply with European Union law.
- * This will alert shoppers that this website uses cookies.
- */
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
-  /*
-  // Here you can override the default browser alert box by hooking to the 'cookie-privacy-notification' hook.
-  utils.hooks.on('cookie-privacy-notification', (event, privacyMessage) => {
-      // You can make your own custom modal or alert box appear in your theme using the privacyMessage provided
-      myCustomAlert(privacyMessage);
-        // Call event.preventDefault() to prevent the default browser alert from occurring in stencil-utils
-      event.preventDefault();
-  });
-  */
-
-  var $privacyDialog = $('.cookieMessage');
-  if (document.cookie.indexOf('ACCEPT_COOKIE_USAGE') === -1) {
-    $privacyDialog.show();
-  }
-  $('body').on('click', '[data-privacy-accept]', function () {
-    var date = new Date();
-    date.setDate(date.getDate() + 365);
-    document.cookie = "ACCEPT_COOKIE_USAGE=1;expires=" + date.toGMTString() + "; path=/";
-    _bigcommerce_stencil_utils__WEBPACK_IMPORTED_MODULE_0__["default"].hooks.emit('cookie-privacy-accepted');
-    $privacyDialog.hide();
-  });
 }
 
 /***/ }),

@@ -57,11 +57,18 @@ var Category = /*#__PURE__*/function (_CatalogPage) {
     });
     this.makeShopByPriceFilterAccessible();
     (0,_global_compare_products__WEBPACK_IMPORTED_MODULE_2__["default"])(this.context);
-    if ($('#facetedSearch').length > 0) {
-      this.initFacetedSearch();
-    } else {
+    this.initFacetedSearch();
+    if (!$('#facetedSearch').length) {
       this.onSortBySubmit = this.onSortBySubmit.bind(this);
       _bigcommerce_stencil_utils__WEBPACK_IMPORTED_MODULE_0__.hooks.on('sortBy-submitted', this.onSortBySubmit);
+
+      // Refresh range view when shop-by-price enabled
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('search_query')) {
+        $('.reset-filters').show();
+      }
+      $('input[name="price_min"]').attr('value', urlParams.get('price_min'));
+      $('input[name="price_max"]').attr('value', urlParams.get('price_max'));
     }
     $('a.reset-btn').on('click', function () {
       return _this3.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite');
@@ -87,7 +94,6 @@ var Category = /*#__PURE__*/function (_CatalogPage) {
     var requestOptions = {
       config: {
         category: {
-          shop_by_price: true,
           products: {
             limit: productsPerPage
           }

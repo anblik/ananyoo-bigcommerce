@@ -1,4 +1,3 @@
-
 {{#unless customer.addresses}}
     {{> components/common/alert/alert-info (lang 'account.addresses.no_addresses')}}
 {{/unless}}
@@ -8,9 +7,9 @@
         <li class="address">
             <div class="panel panel--address">
                 <div class="panel-body">
-                    <h2 class="address-title">{{first_name}} {{last_name}}</h2>
+                    <h5 class="address-title">{{first_name}} {{last_name}}</h5>
                     <ul class="address-details address-details--postal">
-                        <li>{{company}}</li>
+                        <li>{{{company}}}</li>
                         <li>{{address1}}</li>
                         <li>{{address2}}</li>
                         <li>{{city}}{{#if state}}, {{state}}{{/if}} {{zip}}</li>
@@ -37,10 +36,9 @@
             <span class="panel-body">
                 <span class="address-addNew">
                     <span class="address-symbol">&plus;</span>
-                    <h3 class="address-title">{{lang 'account.addresses.new_address' }}</h3>
+                    <h5 class="address-title">{{lang 'account.addresses.new_address' }}</h5>
                 </span>
             </span>
         </a>
     </li>
 </ul>
-

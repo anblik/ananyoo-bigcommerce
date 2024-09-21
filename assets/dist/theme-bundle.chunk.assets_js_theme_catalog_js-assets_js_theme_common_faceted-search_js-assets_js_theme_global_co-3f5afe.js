@@ -101,8 +101,8 @@ var defaultOptions = {
   priceRangeErrorSelector: '#facet-range-form .form-inlineMessage',
   priceRangeFieldsetSelector: '#facet-range-form .form-fieldset',
   priceRangeFormSelector: '#facet-range-form',
-  priceRangeMaxPriceSelector: '#facet-range-form [name=max_price]',
-  priceRangeMinPriceSelector: '#facet-range-form [name=min_price]',
+  priceRangeMaxPriceSelector: $('#facetedSearch').length ? '#facet-range-form [name=max_price]' : '#facet-range-form [name=price_max]',
+  priceRangeMinPriceSelector: $('#facetedSearch').length ? '#facet-range-form [name=min_price]' : '#facet-range-form [name=price_min]',
   showMoreToggleSelector: '#facetedSearch .accordion-content .toggleLink',
   facetedSearchFilterItems: '#facetedSearch-filterItems .form-input',
   modal: (0,_global_modal__WEBPACK_IMPORTED_MODULE_6__["default"])('#modal')[0],
@@ -213,6 +213,14 @@ var FacetedSearch = /*#__PURE__*/function () {
 
       // Refresh view with new content
       _this2.refreshView(content);
+
+      // Refresh range view when shop-by-price enabled
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('search_query')) {
+        $('.reset-filters').show();
+      }
+      $('input[name="price_min"]').attr('value', urlParams.get('price_min'));
+      $('input[name="price_max"]').attr('value', urlParams.get('price_max'));
     });
   };
   _proto.expandFacetItems = function expandFacetItems($navList) {
@@ -461,15 +469,7 @@ var FacetedSearch = /*#__PURE__*/function () {
     }
   };
   _proto.onPopState = function onPopState() {
-    var currentUrl = window.location.href;
-    var searchParams = new URLSearchParams(currentUrl);
-    // If searchParams does not contain a page value then modify url query string to have page=1
-    if (!searchParams.has('page')) {
-      var linkUrl = $('.pagination-link').attr('href');
-      var re = /page=[0-9]+/i;
-      var updatedLinkUrl = linkUrl.replace(re, 'page=1');
-      window.history.replaceState({}, document.title, updatedLinkUrl);
-    }
+    if (document.location.hash !== '') return;
     $(window).trigger('statechange');
   };
   return FacetedSearch;
