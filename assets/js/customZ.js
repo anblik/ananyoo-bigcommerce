@@ -40,6 +40,22 @@ var AnanyooJS = {
             } 
         });
     },
+    removeTitleFromHeaderSliderImg: function() {
+        setTimeout(function() { 
+            jQuery(".heroCarousel .slick-list .slick-track a").each(function() {
+                var imgAltData = jQuery(this).find(".heroCarousel-slide .heroCarousel-image-wrapper img").attr('alt');
+                var imgTitleData = jQuery(this).find(".heroCarousel-slide .heroCarousel-image-wrapper img").attr('title');
+
+                console.log('imgAltData --', imgAltData);
+                console.log('imgTitleData --', imgTitleData);
+
+
+                if(imgAltData == imgTitleData) {
+                    jQuery(this).find(".heroCarousel-image-wrapper img").attr('title', "");
+                } 
+            });
+        }, 3000); 
+    },
     removeTitleFromLogoImg: function() {
         var imgAltData = jQuery(".header-logo-image-container .header-logo-image").attr('alt');
         var imgTitleData = jQuery(".header-logo-image-container .header-logo-image").attr('title');
@@ -63,8 +79,8 @@ var AnanyooJS = {
                 var imgAltData = jQuery(this).find(".card-figure .card-img-container img").attr('alt');
                 var imgTitleData = jQuery(this).find(".card-figure .card-img-container img").attr('title');
 
-                console.log('imgAltData --', imgAltData);
-                console.log('imgTitleData --', imgTitleData);
+                // console.log('imgAltData --', imgAltData);
+                // console.log('imgTitleData --', imgTitleData);
 
                 if(imgAltData == imgTitleData) {
                     jQuery(this).find(".card-figure .card-img-container img").attr('title', "");
@@ -244,6 +260,11 @@ var AnanyooJS = {
 
         jQuery(".css-1k0woj .css-1clkqco a").html();
     },
+    removeTitleFormOrderList: function() {
+        jQuery(".account-list .account-listItem").each(function() { 
+        jQuery(this).find(".account-product-figure img").attr("title", "");
+        }); 
+    },
 };
 jQuery(document).ready(function() {        
     AnanyooJS.addButtonRole(".headerSlider");
@@ -261,9 +282,11 @@ jQuery(document).ready(function() {
     AnanyooJS.removeLogoTitleValue();
     AnanyooJS.removeTitleFromBlogList();
     AnanyooJS.removeTitleFormCartList();
+    AnanyooJS.removeTitleFormOrderList();
     AnanyooJS.replaceH3ByH2(".account-content .account-heading");
     AnanyooJS.modifyAltTextInProductDetailsThumbImage();
     AnanyooJS.removeImageAltTextFromCheckoutPage();
+    AnanyooJS.removeTitleFromHeaderSliderImg();
     
 });
 

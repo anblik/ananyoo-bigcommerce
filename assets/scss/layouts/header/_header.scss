@@ -213,7 +213,7 @@
 .mobileMenu-toggle {
     @include square($header-toggle-width);
     display: inline-block;
-    font-size: 0;
+    font-size: 11px;
     left: 0;
     overflow: hidden;
     padding: 0 remCalc(18);
